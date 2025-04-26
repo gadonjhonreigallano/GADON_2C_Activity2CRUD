@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .nav {
+      width: 200px;
+      background-color: #333;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    .nav a {
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    .nav a:hover {
+      background-color: #575757;
+    }
+
+    .nav a.active {
+      background-color: #04AA6D;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="nav">
+      <a href="#" class="tab-link active" data-tab="dashboard">Dashboard</a>
+      <a href="#" class="tab-link" data-tab="records">Records</a>
+      <a href="#" class="tab-link" data-tab="users">Users</a>
+      <a href="#" class="tab-link" data-tab="logout">Logout</a>
+    </div>
+
+    <div class="content">
+      <div id="dashboard" class="section active">
+        <h2>Dashboard</h2>
+        <p>Welcome to the admin dashboard!</p>
+      </div>
+
+      <div id="records" class="section">
+        <h2>Records</h2>
+        <p>Here you can manage records.</p>
+      </div>
+
+      <div id="users" class="section">
+        <h2>Users</h2>
+        <p>Manage user accounts here.</p>
+      </div>
+
+      <div id="logout" class="section">
+        <h2>Logout</h2>
+        <p>You have been logged out.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-link');
+    const sections = document.querySelectorAll('.section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
